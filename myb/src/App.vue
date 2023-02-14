@@ -38,6 +38,7 @@
     font-size: 40px;
     margin-bottom: 30px;
     color: #222;
+    text-transform: uppercase;
   }
 
 </style>
