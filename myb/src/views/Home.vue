@@ -3,17 +3,20 @@
         <Banner />
         <div class="main-container">
             <h1>Monte o seu burger</h1>
-            <p> form</p>
+            <BugerForm />
         </div>
     
 </template>
 <script>
-    import Banner from './Banner.vue';
+    import Banner from '@/components/Banner.vue';
+    import BugerForm from '@/components/BugerForm.vue';
+
 
     export default{
         name:'Home',
         components: {
-          Banner
+          Banner,
+          BugerForm
         }
     }
  
