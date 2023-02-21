@@ -1,8 +1,8 @@
 <template>
     <div>
-        <p>oi mundo</p>
+        <Message :msg="msg" v-show="msg"/>
         <div>
-            <form action="" id="burger-form">
+            <form action="" id="burger-form" @submit="createBuguer">
                 <div class="input-container">
                     <label for="nome">Nome do cliente</label>
                     <input type="text" name="nome" id="nome" v-model="nome" placeholder="Digite o seu nome">
@@ -36,6 +36,8 @@
     </div>
 </template>
 <script>
+import Message from './Message.vue';
+
     export default{
         name:"Bugerform",
         data(){
@@ -46,7 +48,7 @@
                 nome: null,
                 pao: null,
                 carne: null, 
-                opcionais: [],
+                opcionais:[],
                 status: "Solicitado",
                 msg:null
 
@@ -60,12 +62,46 @@
                 this.paes = data.paes;
                 this.carnes =  data.carnes;
                 this.opcionaisdata = data.opcionais
+            },
+            async createBuguer(e){
+                e.preventDefault();
+
+                const data ={
+                    nome: this.nome,
+                    carne: this.carne,
+                    pao: this.pao,
+                    opcionais: Array.from(this.opcionais),
+                    status: "solicitado"
+                }
+
+                const dataJson = JSON.stringify(data)
+                const req =  await fetch(" http://localhost:3000/burgers",{
+                    method: "POST",
+                    headers:{"content-type": "application/json"},
+                    body:dataJson,
+                });
+
+                const res = await req.json();
+
+                this.msg =`pedido Nº ${res.id} realizado com sucesso`
+
+                setTimeout(() => this.msg = "",3000)
+
+                this.nome="",
+                this.carne="", 
+                this.pao="", 
+                this.opcionais=""
             }
         },
         mounted(){
             this.getIngredientes()
+        },
+        components:{
+            Message,
         }
     }
+  
+
 </script>
 <style scoped>
     #burger-form{
