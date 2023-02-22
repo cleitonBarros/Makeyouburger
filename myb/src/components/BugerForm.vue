@@ -81,17 +81,23 @@ import Message from './Message.vue';
                     body:dataJson,
                 });
 
+                
+                this.sendMessage(req)
+                this.clearField();
+            },
+            async sendMessage(req){
                 const res = await req.json();
-
                 this.msg =`pedido Nº ${res.id} realizado com sucesso`
-
                 setTimeout(() => this.msg = "",3000)
-
+            
+            },
+            async clearField(){
                 this.nome="",
                 this.carne="", 
                 this.pao="", 
                 this.opcionais=[]
-            }
+            },
+
         },
         mounted(){
             this.getIngredientes()

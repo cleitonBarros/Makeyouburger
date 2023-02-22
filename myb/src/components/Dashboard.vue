@@ -27,7 +27,7 @@
                         <option v-for="s in status" :key="s.id" :value="s.tipo" :selected="burger.status === s.tipo"
                         >{{ s.tipo }}</option>
                     </select>
-                    <button  class="delete-btn" @click="deleteBurger(burger.id)" >Cancelar</button>
+                    <button  class="delete-btn" @click="deleteBurger(burger.id)" :disabled="disabled" >Cancelar</button>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                 burgers: null,
                 status: [],
                 msg: null,
-                disabled: true,
+                disabled: null,
             }
         },
         components:{
@@ -64,32 +64,35 @@
                 this.status = data
             },
             async deleteBurger(id){
+                const del = 1
                 const req = await fetch(`http://localhost:3000/burgers/${id}`,{
                     method: "DELETE"
                 })
 
-                const res = await req.json()
-                this.msg = `pedido removido com sucesso`
-                setTimeout(()=> this.msg=" " , 3000)
+                this.sendMessage(req,del);
                 this.getBurger()
             },
             async updateBurger(event, id){
+                const att = 2
                 const option = event.target.value
                 const dataJson = JSON.stringify({status: option})
 
                 const req = await fetch(`http://localhost:3000/burgers/${id}`,{
                     method: "PATCH",
                     headers:{"Content-Type":"application/json"},
-                    body: dataJson
+                    body: dataJson,
+                    disabled: option === "Finalizado" ? true : false
+
                 })
-
-                const res = await req.json()
-
-                this.msg =`pedido Nº ${res.id} foi atualizado para ${res.status}`
-
-                setTimeout(() => this.msg = "",3000)
+                this.sendMessage(req,att);
                
+            },
+            async sendMessage(req,sub){
+                const res = await req.json()
+                this.msg = sub === 2 ? `pedido Nº ${res.id} foi atualizado para ${res.status}`: `O pedido foi removido`
+                setTimeout(() => this.msg = "",3000)
             }
+
         },
         mounted(){
             this.getBurger()
@@ -145,6 +148,12 @@
     .delete-btn:hover{
         background-color: transparent; 
         color: #222;
+    }
+    .delete-btn:disabled{
+        color: #000000;
+        background-color: #818080;
+        border: 2px solid #818080;
+        cursor: not-allowed;
     }
 
 </style>

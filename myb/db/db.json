@@ -79,8 +79,8 @@
   ],
   "burgers": [
     {
-      "nome": "mario",
-      "carne": "Maminha",
+      "nome": "cleiton ",
+      "carne": "Picanha",
       "pao": "Italiano Branco",
       "opcionais": [
         "Bacon",
@@ -91,67 +91,27 @@
       "id": 1
     },
     {
-      "nome": "pedro",
-      "carne": "Maminha",
-      "pao": "Italiano Branco",
+      "nome": "joana",
+      "carne": "",
+      "pao": "Parmesão e Orégano",
       "opcionais": [
         "Bacon",
-        "Salame",
-        "Cheddar",
-        "Pepino"
+        "Salame"
       ],
-      "status": "solicitado",
+      "status": "Finalizado",
       "id": 2
     },
     {
-      "nome": "marion",
-      "carne": "Maminha",
-      "pao": "Italiano Branco",
+      "nome": "lina",
+      "carne": "Veggie burger",
+      "pao": "Integral",
       "opcionais": [
-        "Bacon",
-        "Salame",
+        "Tomate",
+        "Pepino",
         "Cebola roxa"
       ],
-      "status": "solicitado",
+      "status": "Finalizado",
       "id": 3
-    },
-    {
-      "nome": "marion",
-      "carne": "Veggie burger",
-      "pao": "Parmesão e Orégano",
-      "opcionais": [
-        "Tomate",
-        "Pepino"
-      ],
-      "status": "solicitado",
-      "id": 4
-    },
-    {
-      "nome": "rafa",
-      "carne": "Alcatra",
-      "pao": "3 Queijos",
-      "opcionais": [
-        "Bacon",
-        "Salame",
-        "Cheddar",
-        "Tomate"
-      ],
-      "status": "solicitado",
-      "id": 5
-    },
-    {
-      "nome": "luziane",
-      "carne": "Picanha",
-      "pao": "Parmesão e Orégano",
-      "opcionais": [
-        "Tomate",
-        "Cheddar",
-        "Salame",
-        "Cebola roxa",
-        "Bacon"
-      ],
-      "status": "solicitado",
-      "id": 6
     }
   ]
 }
