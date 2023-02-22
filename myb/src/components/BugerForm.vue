@@ -90,7 +90,7 @@ import Message from './Message.vue';
                 this.nome="",
                 this.carne="", 
                 this.pao="", 
-                this.opcionais=""
+                this.opcionais=[]
             }
         },
         mounted(){
